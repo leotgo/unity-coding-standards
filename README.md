@@ -1,6 +1,6 @@
 # Unity3D Coding Standards
 
-An attempt at documenting my own coding standards, a composition of coding standards acquired from multiple Unity developers across the community.
+An attempt at documenting a composition of coding standards acquired from multiple game developers across the community.
 
 ## References
 
@@ -10,103 +10,10 @@ An attempt at documenting my own coding standards, a composition of coding stand
 
 ## Table of Contents
 
-* [General C# file conventions](#general-c#-file-conventions)
 * [Naming conventions](#naming-conventions)
+* [C# file layout](#c#-file-layout)
 * [Usings order](#usings-order)
 * [Comments and documentation](#comments-and-documentation)
-
-## General C# file conventions
-
-### Rules of thumb
-
-* Library usings should be the first lines of a file, followed by *typedef*-like usings;
-* Put class definition inside an appropriate namespace;
-* Prefer defining only one class per file;
-* File name should be the same as the class name.
-
-### Class definition order
-
-Define a class in the following order:
-
- 1. Nested classes
- 2. Constants
- 3. Enums
- 4. Properties
- 5. Fields
- 6. Constructors (if applicable)
- 7. Unity Messages
- 8. Public methods
- 9. Private methods
-
-In **private** methods, prefer the following order:
-
-1. Initialization methods
-2. Core functionality methods
-3. Helper or explanatory methods
-
-### MonoBehaviour example
-
-```csharp
-using System;
-using System.Collection.Generic;
-using System.Collections;
-using UnityEngine;
-
-using SomeDataType = Dicitonary<Object, int>;
-
-namespace MyCompany.MyGame.SomeSystem
-{
-    public class MyClass : MonoBehaviour, ISomethingInterface
-    {
-        public class Data
-        {
-            ...
-        }
-
-        private const float SOME_CONSTANT_VALUE = 10f;
-
-        public enum EnumExample {
-            FirstElement,
-            SecondElement,
-            ...
-        }
-
-        public SomeDataType SomeProperty { get => someField; }
-
-        private SomeDataType someField;
- 
-        public MyClass()
-        {
-            ...
-        }
-
-        private void Awake()
-        {
-            ...
-        }
-
-        public void MyPublicMethod()
-        {
-            ...
-        }
-
-        private void Initialize()
-        {
-            ...
-        }
-
-        private void DoSomething()
-        {
-            ...
-        }
-
-        private int HelperFunction()
-        {
-            ...
-        }
-    }
-}
-```
 
 ## Naming conventions
 
@@ -150,7 +57,7 @@ abstract class AIBehaviourBase
 
 ### Interfaces
 
-Interfaces should include the prefix "I". The following words should be formatted in UpperCamelCase. Avoid using acronyms after the prefix, such as `IUIElement`. The interface name should briefly describe the semantics of the members and/or which components they are supposed to interact with.
+Interfaces should include the prefix "I", followed by words formatted in UpperCamelCase. Avoid using acronyms after the prefix, such as `IUIElement`. The interface name should briefly describe the semantics of the members and/or which components they are supposed to interact with.
 
 Examples:
 
@@ -158,9 +65,6 @@ An interface for something that can be a physics target for a *Motor*, such as t
 
 ```csharp
 interface IMotorTarget
-```
-
-```csharp
 ```
 
 ### Nested Classes
@@ -172,6 +76,10 @@ WIP
 WIP
 
 ### Properties and Fields
+
+WIP
+
+### Attributes
 
 WIP
 
@@ -187,7 +95,16 @@ WIP
 
 WIP
 
-## Usings order
+## C# file layout
+
+### General rules
+
+* Library usings should be the first lines of a file, followed by *typedef*-like usings;
+* Put class definition inside an appropriate namespace;
+* Prefer defining only one class per file;
+* File name should be the same as the class name.
+
+### Usings order
 
 Usings should be defined in the following order:
 
@@ -201,7 +118,7 @@ Usings should be defined in the following order:
  All namespace categories should be blocked together, without separating with spaces or comments.
  An exception to this is *typedef*-like usings, which should be separated from library usings with an empty line.
 
-Example:
+**Example:**
 
 ```csharp
 using System;
@@ -221,18 +138,116 @@ using ThisProject.Combat;
 using EntityPrefabMap = Dictionary<EntityType,GameObject>;
 ```
 
-## Comments and documentation
+### Class definition order
 
-Document public classes with XML comments.
+Define a class in the following order:
+
+ 1. Nested classes
+ 2. Constants
+ 3. Enums
+ 4. Properties
+ 5. Fields
+ 6. Constructors (if applicable)
+ 7. Unity Messages
+ 8. Public methods
+ 9. Private methods
+
+**Example:**
 
 ```csharp
-///<summary>
-/// Base class for implementations of behaviors of AI Agents.
-///</summary>
-public class AIBehavior
+public class MyClass : MonoBehaviour
+{
+    private class MyNestedClass
+    {
+        ...
+    }
+
+    private const int SOME_CONSTANT = 1;
+
+    public enum SomeEnum {
+        FirstElement,
+        SecondElement
+    }
+
+    public int SomeProperty { get => someField; }
+
+    private int someField;
+
+    private void Start()
+    {
+        ...
+    }
+
+    public void SomePublicMethod()
+    {
+        ...
+    }
+
+    private void SomePrivateMethod()
+    {
+        ...
+    }
+}
+```
+
+### Private methods order
+
+Prefer the following order:
+
+1. Initialization methods
+2. Core functionality methods
+3. Helper or explanatory methods
+
+**Example:**
+
+```csharp
+// Initialization
+private void Initialize()
+{
+    ...
+}
+
+// Core functionality
+private void Move(Vector3 direction)
+{
+    ...
+}
+
+// Helper
+private bool CheckIfPositionIsWalkable(Vector3 position)
 {
     ...
 }
 ```
+
+## Comments and documentation
+
+### Comments
+
+WIP
+
+### Documenting Classes
+
+WIP
+
+Document public classes with XML comments.
+
+**Example:**
+
+```csharp
+///<summary>
+/// Base class for implementations of AI Agent behaviors.
+///</summary>
+public abstract class AIBehavior
+{
+    ...
+}
+```
+
+### Documenting Properties
+
+WIP
+
+### Documenting Methods
 
 WIP
