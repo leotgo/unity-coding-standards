@@ -11,8 +11,36 @@
 
 ## General C# file conventions
 
+### Rules of thumb
+
+* Library usings should be the first lines of a file, followed by *typedef*-like usings;
+* Put class definition inside an appropriate namespace;
+* Prefer defining only one class per file;
+* File name should be the same as the class name.
+
+### Class definition order
+
+Define a class in the following order:
+
+ 1. Nested classes
+ 2. Constants
+ 3. Enums
+ 4. Properties
+ 5. Fields
+ 6. Constructors (if applicable)
+ 7. Unity Messages
+ 8. Public methods
+ 9. Private methods
+
+In **private** methods, prefer the following order:
+
+1. Initialization methods
+2. Core functionality methods
+3. Helper or explanatory methods
+
+### MonoBehaviour example
+
 ```csharp
-// Usings should come first
 using System;
 using System.Collection.Generic;
 using System.Collections;
@@ -20,54 +48,42 @@ using UnityEngine;
 
 using SomeDataType = Dicitonary<Object, int>;
 
-// Put class definition inside an appropriate namespace
 namespace MyCompany.MyGame.SomeSystem
 {
-    // Define only one class per file.
-    // Put base class first, interfaces after.
-    public class MyClass : MonoBehaviour, ISomethingInterface, IAnotherInterface
+    public class MyClass : MonoBehaviour, ISomethingInterface
     {
-        // 1. Nested classes
         public class Data
         {
             ...
         }
 
-        // 2. Constants
         private const float SOME_CONSTANT_VALUE = 10f;
 
-        // 3. Enums
         public enum EnumExample {
             FirstElement,
             SecondElement,
             ...
         }
 
-        // 4. Properties
-        public int SomeField { get => someField; }
+        public SomeDataType SomeProperty { get => someField; }
 
-        // 5. Fields
-        private int someField;
-
-        // 6. Constructors
+        private SomeDataType someField;
+ 
         public MyClass()
         {
             ...
         }
 
-        // 7. Unity Messages
         private void Awake()
         {
             ...
         }
 
-        // 8. Public methods
         public void MyPublicMethod()
         {
             ...
         }
 
-        // 9. Private methods
         private void Initialize()
         {
             ...
@@ -100,7 +116,7 @@ namespace Utilities.Debug
 ```
 
 ```csharp
-namespace TowerDefenseGame.CombatSystem
+namespace TowerDefenseGame.Combat
 ```
 
 ```csharp
@@ -132,7 +148,7 @@ Interfaces should include the prefix "I". The following words should be formatte
 
 Examples:
 
-An interface for a GameObject that can be a physics target for a *Motor* type, such as a `PlayerMotor`:
+An interface for something that can be a physics target for a *Motor*, such as the `PlayerMotor`:
 
 ```csharp
 interface IMotorTarget
