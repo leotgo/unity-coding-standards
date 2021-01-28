@@ -1,61 +1,13 @@
-# Unity Coding Standards
+# Unity3D Coding Standards
 
 ## Table of Contents
 
-* [Naming conventions](#naming-conventions)
 * [General C# file conventions](#general-c#-file-conventions)
+* [Naming conventions](#naming-conventions)
+  * [Name formatting](#name-formatting)
+  * [Naming example](#naming-example)
 * [Usings order](#usings-order)
 * [Comments and documentation](#comments-and-documentation)
-
-## Naming conventions
-
-### Name formatting
-
-Type         | Convention                      | Example
------------- | ------------------------------- | -----------------------
-Namespace    | UpperCamelCase                  | `MyNamespace.SomeSystem`
-Class        | UpperCamelCase                  | `MyClass`
-Enum         | UpperCamelCase                  | `SomeEnumType`
-Enum element | UpperCamelCase                  | `SomeEnumElement`
-Property     | UpperCamelCase                  | `int MyProperty { get; }`
-Field        | lowerCamelCase                  | `int myField`
-Method       | UpperCamelCase                  | `MyMethod()`
-Argument     | lowerCamelCase                  | `MyMethod(int arg)`
-Coroutine    | Prefix "CO_" and UpperCamelCase | `CO_DoSomething()`
-
-### Naming example
-
-```csharp
-namespace MyNamespace
-{
-    public class MyClass
-    {
-        public enum MyEnum {
-            FirstElement,
-            SecondElement
-        }
-
-        public int ExampleProperty { get => someField; }
-
-        private int someField;
-
-        public MyClass()
-        {
-            // ...
-        }
-
-        public MyMethod(int arg)
-        {
-            // ...
-        }
-
-        IEnumerator CO_DoSomething(int arg)
-        {
-            // ...
-        }
-    }
-}
-```
 
 ## General C# file conventions
 
@@ -66,47 +18,66 @@ using System.Collection.Generic;
 using System.Collections;
 using UnityEngine;
 
-// Put class definition inside an appropriate project namespace
-namespace ThisProject.SomeSystem
+using SomeDataType = Dicitonary<Object, int>;
+
+// Put class definition inside an appropriate namespace
+namespace MyCompany.MyGame.SomeSystem
 {
-    // Define only one class per file
-    public class MyClass
+    // Define only one class per file.
+    // Put base class first, interfaces after.
+    public class MyClass : MonoBehaviour, ISomethingInterface, IAnotherInterface
     {
-        // Constants
+        // 1. Nested classes
+        public class Data
+        {
+            ...
+        }
+
+        // 2. Constants
         private const float SOME_CONSTANT_VALUE = 10f;
 
-        // Enum definitions
+        // 3. Enums
         public enum EnumExample {
             FirstElement,
             SecondElement,
             ...
         }
 
-        // Properties
+        // 4. Properties
         public int SomeField { get => someField; }
 
-        // Fields
+        // 5. Fields
         private int someField;
 
-        // Constructors
+        // 6. Constructors
         public MyClass()
         {
             ...
         }
 
-        // Public methods
+        // 7. Unity Messages
+        private void Awake()
+        {
+            ...
+        }
+
+        // 8. Public methods
         public void MyPublicMethod()
         {
             ...
         }
 
-        // Private methods
+        // 9. Private methods
         private void Initialize()
         {
             ...
         }
 
-        // Helper functions
+        private void DoSomething()
+        {
+            ...
+        }
+
         private int HelperFunction()
         {
             ...
@@ -115,29 +86,116 @@ namespace ThisProject.SomeSystem
 }
 ```
 
-## Usings order
+## Naming conventions
+
+### Namespaces
+
+Namespaces are formatted in UpperCamelCase, with the exception of acronyms such as AI, UI, HUD.
+The name should briefly describe the "system" or set of definitions contained in the library.
+
+**Examples:**
 
 ```csharp
-// 1. System namespaces
+namespace Utilities.Debug
+```
+
+```csharp
+namespace TowerDefenseGame.CombatSystem
+```
+
+```csharp
+namespace TowerDefenseGame.UI
+```
+
+### Classes
+
+Class names are formatted in UpperCamelCase. Acronyms can be included as a prefix or suffix.
+The class name should briefly describe its responsibilities or data. Prefer including the suffix *"Base"* in abstract classes where applicable.
+
+Examples:
+
+A class responsible for performing movement on the player character's transform:
+
+```csharp
+class PlayerMotor
+```
+
+An abstract class for implementing behaviors for AI Agents:
+
+```csharp
+abstract class AIBehaviourBase
+```
+
+### Interfaces
+
+Interfaces should include the prefix "I". The following words should be formatted in UpperCamelCase. Avoid using acronyms after the prefix, such as `IUIElement`. The interface name should briefly describe the semantics of the members and/or which components they are supposed to interact with.
+
+Examples:
+
+An interface for a GameObject that can be a physics target for a *Motor* type, such as a `PlayerMotor`:
+
+```csharp
+interface IMotorTarget
+```
+
+```csharp
+```
+
+### Nested Classes
+
+WIP
+
+### Enums
+
+WIP
+
+### Properties and Fields
+
+WIP
+
+### Methods
+
+WIP
+
+### Coroutines
+
+WIP
+
+### Arguments
+
+WIP
+
+## Usings order
+
+Usings should be defined in the following order:
+
+ 1. System or .NET libraries
+ 2. Unity libraries
+ 3. Third-Party plugins (asset store)
+ 4. Your own utility libraries
+ 5. Project namespaces
+ 6. Type name aliases
+
+ All namespace categories should be blocked together, without separating with spaces or comments.
+ An exception to this is *typedef*-like usings, which should be separated from library usings with an empty line.
+
+Example:
+
+```csharp
 using System;
 using System.Collections;
 using System.Collections.Generic;
-// 2. Unity libraries
 using UnityEngine;
 using UnityEngine.Events;
-// 3. Third-Party Plugins
 using ExampleCompany;
 using OtherCompany.BoostedInspector;
-// 4. Utility Libraries
-using MyLib;
-using MyLib.DebugUtilities;
+using MyUtilityLib;
+using MyUtilityLib.DebugUtilities;
 using MyOtherLib.Patterns;
-// 5. Project
 using ThisProject;
 using ThisProject.Audio;
 using ThisProject.Combat;
 
-// 6. Type aliases
 using EntityPrefabMap = Dictionary<EntityType,GameObject>;
 ```
 
@@ -154,3 +212,5 @@ public class AIBehavior
     ...
 }
 ```
+
+WIP
