@@ -1,6 +1,6 @@
 # Unity3D Coding Standards
 
-An attempt at documenting my own coding standards, a composition of coding standards acquired from multiple Unity developers accross the community.
+An attempt at documenting my own coding standards, a composition of coding standards acquired from multiple Unity developers across the community.
 
 ## References
 
