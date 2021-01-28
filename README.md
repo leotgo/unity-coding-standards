@@ -1,11 +1,17 @@
 # Unity3D Coding Standards
 
+An attempt at documenting my own coding standards, a composition of coding standards acquired from multiple Unity developers accross the community.
+
+## References
+
+* [Microsoft Naming Guidelines](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines)
+* [raywenderlich/c-sharp-style-guide](https://github.com/raywenderlich/c-sharp-style-guide)
+* [Unreal coding standards](https://docs.unrealengine.com/en-US/ProductionPipelines/DevelopmentSetup/CodingStandard/index.html)
+
 ## Table of Contents
 
 * [General C# file conventions](#general-c#-file-conventions)
 * [Naming conventions](#naming-conventions)
-  * [Name formatting](#name-formatting)
-  * [Naming example](#naming-example)
 * [Usings order](#usings-order)
 * [Comments and documentation](#comments-and-documentation)
 
