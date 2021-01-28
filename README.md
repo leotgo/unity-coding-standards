@@ -122,19 +122,22 @@ namespace ThisProject.SomeSystem
 using System;
 using System.Collections;
 using System.Collections.Generic;
-// 2. Third-Party Plugins
+// 2. Unity libraries
+using UnityEngine;
+using UnityEngine.Events;
+// 3. Third-Party Plugins
 using ExampleCompany;
 using OtherCompany.BoostedInspector;
-// 3. Utility Libraries
+// 4. Utility Libraries
 using MyLib;
 using MyLib.DebugUtilities;
 using MyOtherLib.Patterns;
-// 4. Project
+// 5. Project
 using ThisProject;
 using ThisProject.Audio;
 using ThisProject.Combat;
 
-// 5. Type aliases
+// 6. Type aliases
 using EntityPrefabMap = Dictionary<EntityType,GameObject>;
 ```
 
