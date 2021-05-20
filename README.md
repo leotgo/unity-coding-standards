@@ -284,32 +284,85 @@ private bool CheckIfPositionIsWalkable(Vector3 position)
 }
 ```
 
-## Comments and documentation
+## Code documentation
+
+### In-code documentation
+
+Write self-documenting code when possible. Avoid overly abbreviated variables which don't have semantic value for the reader.
+
+```csharp
+// Bad:
+p = p + v * dt;
+```
+
+```csharp
+// Good:
+position = position + velocity * deltaTime;
+```
+
+You can also use explanatory variables to avoid writing complicated and unreadable lines:
+
+```csharp
+// Bad:
+pos = Vector3.Lerp(targetEnemy.position, GetComponent<AutoMovementController>().targetWaypoint.nextPosition, time / max);
+```
+
+```csharp
+// Good:
+var waypoint = player.GetComponent<AutoMovementController>().targetWaypoint;
+var startPosition = targetEnemy.position;
+var finalPosition = waypoint.nextPosition;
+var lerpPoint = time / maxMovement;Time;
+position = Vector3.Lerp(startPosition, finalPosition, lerpPoint);
+```
 
 ### Comments
 
-WIP
-
-### Documenting Classes
-
-Document public classes with XML comments.
-
-**Example:**
+Write useful comments. Avoid being redundant with what the code is telling the reader. Instead, disclose valuable information that might not be directly perceivable.
 
 ```csharp
-///<summary>
-/// Base class for implementations of AI Agent behaviors.
-///</summary>
-public abstract class AIBehaviourBase
-{
-    ...
-}
+// Bad:
+// increment player id
+playerId++;
 ```
 
-### Documenting Properties
+```csharp
+// Good:
+// We know that a new player has joined, generate a new identifier.
+playerId++;
+```
 
-WIP
+Do not comment bad or unreadable code. Prefer rewriting it instead.
 
-### Documenting Methods
+```csharp
+// Bad:
+// Increase current position by the velocity scaled by deltaTime to perform movement.
+p = p + v * dt;
+```
 
-WIP
+```csharp
+// Good:
+position = position + velocity * deltaTime;
+```
+
+Do not contradict the code.
+
+```csharp
+// Health value should be between 0 and 100
+private int health;
+
+...
+
+this.health = 150;
+```
+
+```csharp
+// Good:
+// Default Health values should be between 0 and 100.
+private int health;
+
+...
+
+// Apply the temporary health buff from consuming potion.
+this.health = 150;
+```
