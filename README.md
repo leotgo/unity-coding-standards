@@ -19,7 +19,7 @@ An attempt at documenting a composition of coding standards acquired from multip
 
 ### Namespaces
 
-Namespaces are formatted in UpperCamelCase, with the exception of acronyms such as AI, UI, HUD.
+Namespaces are formatted in PascalCase, with the exception of acronyms such as AI, UI, HUD.
 The name should briefly describe the "system" or set of definitions contained in the library.
 
 **Examples:**
@@ -38,10 +38,10 @@ namespace TowerDefenseGame.UI
 
 ### Classes
 
-Class names are formatted in UpperCamelCase. Acronyms can be included as a prefix or suffix.
+Class names are formatted in PascalCase. Acronyms can be included as a prefix or suffix.
 The class name should briefly describe its responsibilities or data. Prefer including the suffix *"Base"* in abstract classes where applicable.
 
-Examples:
+**Examples:**
 
 A class responsible for performing movement on the player character's transform:
 
@@ -57,9 +57,9 @@ abstract class AIBehaviourBase
 
 ### Interfaces
 
-Interfaces should include the prefix "I", followed by words formatted in UpperCamelCase. Avoid using acronyms after the prefix, such as `IUIElement`. The interface name should briefly describe the semantics of the members and/or which components they are supposed to interact with.
+Interfaces should include the prefix "I", followed by words formatted in PascalCase. Avoid using acronyms after the prefix, such as `IUIElement`. The interface name should briefly describe the semantics of the members and/or which components they are supposed to interact with.
 
-Examples:
+**Examples:**
 
 An interface for something that can be a physics target for a *Motor*, such as the `PlayerMotor`:
 
@@ -67,33 +67,97 @@ An interface for something that can be a physics target for a *Motor*, such as t
 interface IMotorTarget
 ```
 
-### Nested Classes
+### Fields
 
-WIP
+All non-static fields are written in camelCase.
 
-### Enums
+**Examples:**
 
-WIP
+```csharp
+public  int id;
+private InputHandler input;
+private float health;
+```
 
-### Properties and Fields
+Static fields are the exception, and should be written in PascalCase:
 
-WIP
+```csharp
+public static int WorldSeed;
+```
+
+### Properties
+
+Properties are written in PascalCase.
+
+**Examples:**
+
+```csharp
+public float Health
+{
+    get
+    {
+        return health;
+    }
+    set
+    {
+        health = value;
+    }
+}
+```
 
 ### Attributes
 
-WIP
+Attibutes are written in PascalCase.
+
+**Examples:**
+
+```csharp
+[ConsoleAttribute] public float gameSpeed;
+```
 
 ### Methods
 
-WIP
+Methods or functions are written in PascalCase. Method names should describe the effect caused by the method, or the return value if the method has no effect.
+
+**Examples:**
+
+A method that performs movement on the player character. Tipically, the name for this type of method should be a verb.
+
+```csharp
+public void Move(Vector3 movement)
+```
+
+A method that converts radians to degrees. Notice that while the return type is a float, the name of the method helps to understand how the value should be interpreted.
+
+```csharp
+private float RadianToDegrees(float radians)
+```
+
+A method to determine if a position in the world can be traversed by the player. Once again, the name for the method explains how the return value should be interpreted.
+
+```csharp
+private bool IsPositionWalkable(Vector3 position)
+```
+
+### Parameters
+
+Paremeters are written in camelCase.
+
+**Examples:**
+
+```csharp
+public bool CheckProjectileCollision(float targetPosition)
+```
 
 ### Coroutines
 
-WIP
+Coroutines are written in PascalCase, with the prefix 'CO_'.
 
-### Arguments
+**Examples:**
 
-WIP
+```csharp
+IEnumerator CO_SpawnPlayer(int playerId)
+```
 
 ## C# file layout
 
@@ -228,8 +292,6 @@ WIP
 
 ### Documenting Classes
 
-WIP
-
 Document public classes with XML comments.
 
 **Example:**
@@ -238,7 +300,7 @@ Document public classes with XML comments.
 ///<summary>
 /// Base class for implementations of AI Agent behaviors.
 ///</summary>
-public abstract class AIBehavior
+public abstract class AIBehaviourBase
 {
     ...
 }
