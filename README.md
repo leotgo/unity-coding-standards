@@ -10,10 +10,134 @@ An attempt at documenting a composition of coding standards acquired from multip
 
 ## Table of Contents
 
-* [Naming conventions](#naming-conventions)
-* [C# file layout](#c#-file-layout)
-* [Usings order](#usings-order)
-* [Comments and documentation](#comments-and-documentation)
+1. [File layout](#file-layout)
+2. [Naming conventions](#naming-conventions)
+3. [Code documentation](#code-documentation)
+
+## File layout
+
+### General rules
+
+* Library usings should be the first lines of a file, followed by *typedef*-like usings;
+* Put class definition inside an appropriate namespace;
+* Prefer defining only one class per file;
+* File name should be the same as the class name.
+
+### Usings order
+
+Usings should be defined in the following order:
+
+ 1. System or .NET libraries
+ 2. Unity libraries
+ 3. Third-Party plugins (asset store)
+ 4. Your own utility libraries
+ 5. Project namespaces
+ 6. Type name aliases
+
+ All namespace categories should be blocked together, without separating with spaces or comments.
+ An exception to this is *typedef*-like usings, which should be separated from library usings with an empty line.
+
+**Example:**
+
+```csharp
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using ExampleCompany;
+using OtherCompany.BoostedInspector;
+using MyUtilityLib;
+using MyUtilityLib.DebugUtilities;
+using MyOtherLib.Patterns;
+using ThisProject;
+using ThisProject.Audio;
+using ThisProject.Combat;
+
+using EntityPrefabMap = Dictionary<EntityType,GameObject>;
+```
+
+### Class definition order
+
+Define a class in the following order:
+
+ 1. Nested classes
+ 2. Constants
+ 3. Enums
+ 4. Properties
+ 5. Fields
+ 6. Constructors (if applicable)
+ 7. Unity Messages
+ 8. Public methods
+ 9. Private methods
+
+**Example:**
+
+```csharp
+public class MyClass : MonoBehaviour
+{
+    private class MyNestedClass
+    {
+        ...
+    }
+
+    private const int SOME_CONSTANT = 1;
+
+    public enum SomeEnum {
+        FirstElement,
+        SecondElement
+    }
+
+    public int SomeProperty { get => someField; }
+
+    private int someField;
+
+    private void Start()
+    {
+        ...
+    }
+
+    public void SomePublicMethod()
+    {
+        ...
+    }
+
+    private void SomePrivateMethod()
+    {
+        ...
+    }
+}
+```
+
+### Private methods order
+
+Prefer the following order:
+
+1. Initialization methods
+2. Core functionality methods
+3. Helper or explanatory methods
+
+**Example:**
+
+```csharp
+// Initialization
+private void Initialize()
+{
+    ...
+}
+
+// Core functionality
+private void Move(Vector3 direction)
+{
+    ...
+}
+
+// Helper
+private bool CheckIfPositionIsWalkable(Vector3 position)
+{
+    ...
+}
+```
 
 ## Naming conventions
 
@@ -157,131 +281,6 @@ Coroutines are written in PascalCase, with the prefix 'CO_'.
 
 ```csharp
 IEnumerator CO_SpawnPlayer(int playerId)
-```
-
-## C# file layout
-
-### General rules
-
-* Library usings should be the first lines of a file, followed by *typedef*-like usings;
-* Put class definition inside an appropriate namespace;
-* Prefer defining only one class per file;
-* File name should be the same as the class name.
-
-### Usings order
-
-Usings should be defined in the following order:
-
- 1. System or .NET libraries
- 2. Unity libraries
- 3. Third-Party plugins (asset store)
- 4. Your own utility libraries
- 5. Project namespaces
- 6. Type name aliases
-
- All namespace categories should be blocked together, without separating with spaces or comments.
- An exception to this is *typedef*-like usings, which should be separated from library usings with an empty line.
-
-**Example:**
-
-```csharp
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using ExampleCompany;
-using OtherCompany.BoostedInspector;
-using MyUtilityLib;
-using MyUtilityLib.DebugUtilities;
-using MyOtherLib.Patterns;
-using ThisProject;
-using ThisProject.Audio;
-using ThisProject.Combat;
-
-using EntityPrefabMap = Dictionary<EntityType,GameObject>;
-```
-
-### Class definition order
-
-Define a class in the following order:
-
- 1. Nested classes
- 2. Constants
- 3. Enums
- 4. Properties
- 5. Fields
- 6. Constructors (if applicable)
- 7. Unity Messages
- 8. Public methods
- 9. Private methods
-
-**Example:**
-
-```csharp
-public class MyClass : MonoBehaviour
-{
-    private class MyNestedClass
-    {
-        ...
-    }
-
-    private const int SOME_CONSTANT = 1;
-
-    public enum SomeEnum {
-        FirstElement,
-        SecondElement
-    }
-
-    public int SomeProperty { get => someField; }
-
-    private int someField;
-
-    private void Start()
-    {
-        ...
-    }
-
-    public void SomePublicMethod()
-    {
-        ...
-    }
-
-    private void SomePrivateMethod()
-    {
-        ...
-    }
-}
-```
-
-### Private methods order
-
-Prefer the following order:
-
-1. Initialization methods
-2. Core functionality methods
-3. Helper or explanatory methods
-
-**Example:**
-
-```csharp
-// Initialization
-private void Initialize()
-{
-    ...
-}
-
-// Core functionality
-private void Move(Vector3 direction)
-{
-    ...
-}
-
-// Helper
-private bool CheckIfPositionIsWalkable(Vector3 position)
-{
-    ...
-}
 ```
 
 ## Code documentation
