@@ -312,7 +312,7 @@ pos = Vector3.Lerp(targetEnemy.position, GetComponent<AutoMovementController>().
 var waypoint = player.GetComponent<AutoMovementController>().targetWaypoint;
 var startPosition = targetEnemy.position;
 var finalPosition = waypoint.nextPosition;
-var lerpPoint = time / maxMovement;Time;
+var lerpPoint = time / maxMovementTime;
 position = Vector3.Lerp(startPosition, finalPosition, lerpPoint);
 ```
 
@@ -345,9 +345,10 @@ p = p + v * dt;
 position = position + velocity * deltaTime;
 ```
 
-Do not contradict the code.
+Do not contradict the code!
 
 ```csharp
+// Bad:
 // Health value should be between 0 and 100
 private int health;
 
