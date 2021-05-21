@@ -138,11 +138,11 @@ private bool CheckIfPositionIsWalkable(Vector3 position)
 
 ### Casing
 
-* Identifiers for classes, methods, namespaces, enums, properties, attributes and coroutines are `PascalCase`
-* Identifiers for fields, local variables, parameters are `camelCase`
-* Constants are written in `UPPER_CASE`. Example: `DEFAULT_EXPONENT`
-* The convention for casing is unaffected by modifiers such as `public`, `private`, `protected`, `static` or `readonly`
-* Acronyms should be treated as words and are written in `PascalCase`. Examples: `XmlFormatter`, `AiBehaviour`, `UiElement`
+* Identifiers for classes, methods, namespaces, enums, properties, attributes and coroutines are `PascalCase`;
+* Identifiers for fields, local variables, parameters are `camelCase`;
+* Constants are written in `UPPER_CASE`;
+* The convention for casing is unaffected by the modifiers `public`, `private`, `protected`, `internal`, `static` or `readonly`;
+* Acronyms should be treated as words and are written in `PascalCase`. Examples: `XmlFormatter`, `AiBehaviour`, `UiElement`.
 
 #### Examples
 
