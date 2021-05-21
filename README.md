@@ -130,11 +130,11 @@ switch(colorId)
 * File name should be the same as the class name.
 
 ```csharp
-// File: Player.cs
+// File: AiPathfinder.cs
 using System.Collections.Generic;
 using UnityEngine;
 
-using EntityPrefabMap = Dictionary<EntityType,GameObject>;
+using WaypointMap = Dictionary<Vector3,Waypoint>;
 
 namespace MyGame.AiNavigation
 {
