@@ -136,7 +136,7 @@ using UnityEngine;
 
 using EntityPrefabMap = Dictionary<EntityType,GameObject>;
 
-public namespace MyGame.AiNavigation
+namespace MyGame.AiNavigation
 {
     public class AiPathfinder
     {
@@ -257,7 +257,7 @@ private bool CheckIfPositionIsWalkable(Vector3 position)
 * Identifiers for classes, methods, namespaces, enums, properties, attributes and coroutines are `PascalCase`;
 
 ```csharp
-public namespace OpenSoulsGame.Debug
+namespace OpenSoulsGame.Debug
 ```
 
 ```csharp
