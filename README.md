@@ -59,6 +59,7 @@ public float Health
 public float Health
 {
     get => health;
+    set => health = value;
 }
 ```
 
