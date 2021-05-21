@@ -204,7 +204,7 @@ public const int MAX_SCENE_OBJECTS = 256;
 
 #### Namespaces
 
-The identifier should briefly describe the "system" or set of definitions contained in the library.
+The namespace identifier should briefly describe the systems or sets of definitions contained in the namespace.
 
 Examples:
 
@@ -222,7 +222,7 @@ namespace TowerDefenseGame.UI
 
 #### Classes
 
-The class name should briefly describe its responsibilities or data. Prefer including the suffix *"Base"* in abstract classes where applicable.
+The class identifier should briefly describe its responsibilities or data. Prefer including the suffix *"Base"* in abstract classes where applicable.
 
 Examples:
 
