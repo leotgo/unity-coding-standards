@@ -4,17 +4,126 @@ An attempt at documenting a composition of coding standards acquired from multip
 
 ## Table of Contents
 
-1. [File layout](#file-layout)
-2. [Naming conventions](#naming-conventions)
-3. [Code documentation](#code-documentation)
-4. [References](#references)
+1. [Formatting](#formatting)
+2. [File layout](#file-layout)
+3. [Naming conventions](#naming-conventions)
+4. [Code documentation](#code-documentation)
+5. [References](#references)
+
+## Formatting
+
+* Use spaces instead of tabs. Do not mix spaces and tabs;
+* Each identation level should be 4 spaces wide;
+* Each brace should have its own line;
+
+```csharp
+// Avoid
+if(playerWasHit) {
+    PlaySound(playerHitSound);
+    Damage(player, 10f);
+}
+```
+
+```csharp
+// Prefer
+if(playerWasHit)
+{
+    PlaySound(playerHitSound);
+    Damage(player, 10f);
+}
+```
+
+``` csharp
+// Bad
+public float Health { get { return health; } }
+```
+
+```csharp
+// Good
+public float Health
+{
+    get
+    {
+        return health;
+    }
+}
+```
+
+* It is acceptable to use the expression body definition operator `=>` for property getters and setters for simple, single-statement properties;
+
+```csharp
+public float Health
+{
+    get => health;
+}
+```
+
+* Every statement after a conditional should be inside braces, even if it is a single statement;
+
+```csharp
+// Bad
+if(enemyInRange)
+    Explode();
+```
+
+```csharp
+// Good
+if(enemyInRange)
+{
+    Explode();
+}
+```
+
+* Avoid using ternary operator;
+* Use [string interpolation](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated) instead of LogFormat to increase readability;
+
+```csharp
+// Avoid
+Debug.Log("Player " + playerId + " took a hit from " + damageSource + " for " + damageAmount + " damage.");
+```
+
+```csharp
+// Avoid
+Debug.LogFormat("Player {0} took a hit from {1} for {2} damage.", playerId, damageSource, damageAmount);
+```
+
+```csharp
+// Prefer
+Debug.Log($"Player {playerId} took a hit from {damageSource} for {damageAmount} damage.");
+```
+
+* Switch-case code should be implemented inside braces;
+
+```csharp
+switch(colorId)
+{
+    case PlayerBodyColors.White:
+        {
+            playerBody.SetTexture(whiteTexture);
+        }
+        break;
+    case PlayerBodyColors.Red:
+        {
+            playerBody.SetTexture(redTexture);
+        }
+        break;
+    default:
+        {
+            playerBody.SetTexture(defaultTexture);
+        }
+        break;
+}
+```
+
+* Encode the document in UTF-8 if possible;
+* End-Of-Line character should be CRLF;
 
 ## File layout
 
 ### General rules
 
 * Library usings should be the first lines of a file, followed by *typedef*-like usings;
-* Put class definition inside an appropriate namespace;
+* Put every class definition inside an appropriate namespace;
 * Prefer defining only one class per file;
 * File name should be the same as the class name.
 
@@ -78,12 +187,16 @@ public class MyClass : MonoBehaviour
 
     private const int SOME_CONSTANT = 1;
 
-    public enum SomeEnum {
+    public enum SomeEnum
+    {
         FirstElement,
         SecondElement
     }
 
-    public int SomeProperty { get => someField; }
+    public int SomeProperty
+    {
+        get => someField;
+    }
 
     private int someField;
 
