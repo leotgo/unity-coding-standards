@@ -24,7 +24,7 @@ An attempt at documenting a composition of coding standards acquired from multip
 // Avoid
 if(playerWasHit) {
     PlaySound(playerHitSound);
-    Damage(player, 10f);
+    Damage(player, damageAmount);
 }
 ```
 
@@ -33,7 +33,7 @@ if(playerWasHit) {
 if(playerWasHit)
 {
     PlaySound(playerHitSound);
-    Damage(player, 10f);
+    Damage(player, damageAmount);
 }
 ```
 
@@ -53,7 +53,7 @@ public float Health
 }
 ```
 
-* It is acceptable to use the expression body definition operator `=>` for property getters and setters for simple, single-statement properties;
+* It is acceptable to use the [expression body definition](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/expression-bodied-members) operator `=>` for property getters and setters for simple, single-statement properties;
 
 ```csharp
 public float Health
@@ -329,12 +329,12 @@ namespace TowerDefenseGame.UI
 * Class identifiers should briefly describe its responsibilities or data. Prefer including the suffix *"Base"* in abstract classes where applicable.
 
 ```csharp
-// A class responsible for performing movement on the player character's transform:
+// A class responsible for performing movement on the player character's transform
 class PlayerMotor
 ```
 
 ```csharp
-// An abstract class for implementing behaviors for AI Agents:
+// An abstract class for implementing behaviors for AI Agents
 abstract class AiBehaviourBase
 ```
 
@@ -351,12 +351,12 @@ interface IUiElement
 * Method identifiers should describe the effect caused by the method, or the return value if the method has no effect.
 
 ```csharp
-// A method that performs movement on the player character. 
+// A method that performs movement on the player character
 public void Move(Vector3 movement)
 {
     ...
 }
-// Tipically, the identifier for methods without a return type should be a verb.
+// Tipically, the identifier for methods without a return type should be a verb
 ```
 
 ```csharp
@@ -365,11 +365,11 @@ private float RadianToDegrees(float radians)
 {
     ...
 }
-// The identifier helps to understand how the returned value should be interpreted.
+// The identifier helps to understand how the returned value should be interpreted
 ```
 
 ```csharp
-// A method to determine if a position in the world can be traversed by the player.
+// A method to determine if a position in the world can be traversed by the player
 private bool IsPositionWalkable(Vector3 position)
 ```
 
@@ -444,7 +444,7 @@ position = position + velocity * deltaTime;
 
 ```csharp
 // Bad:
-// Health value should be between 0 and 100
+// Health value should be between 0 and 100.
 private int health;
 
 ...
@@ -454,7 +454,7 @@ this.health = 150;
 
 ```csharp
 // Good:
-// Default Health values should be between 0 and 100.
+// Base health values should be between 0 and 100.
 private int health;
 
 ...
