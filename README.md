@@ -2,17 +2,12 @@
 
 An attempt at documenting a composition of coding standards acquired from multiple game developers across the community.
 
-## References
-
-* [Microsoft Naming Guidelines](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines)
-* [raywenderlich/c-sharp-style-guide](https://github.com/raywenderlich/c-sharp-style-guide)
-* [Unreal coding standards](https://docs.unrealengine.com/en-US/ProductionPipelines/DevelopmentSetup/CodingStandard/index.html)
-
 ## Table of Contents
 
 1. [File layout](#file-layout)
 2. [Naming conventions](#naming-conventions)
 3. [Code documentation](#code-documentation)
+4. [References](#references)
 
 ## File layout
 
@@ -366,3 +361,9 @@ private int health;
 // Apply the temporary health buff from consuming potion.
 this.health = 150;
 ```
+
+## References
+
+* [Microsoft Naming Guidelines](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines)
+* [raywenderlich/c-sharp-style-guide](https://github.com/raywenderlich/c-sharp-style-guide)
+* [Unreal coding standards](https://docs.unrealengine.com/en-US/ProductionPipelines/DevelopmentSetup/CodingStandard/index.html)
