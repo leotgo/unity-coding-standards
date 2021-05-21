@@ -136,61 +136,29 @@ private bool CheckIfPositionIsWalkable(Vector3 position)
 
 ## Naming conventions
 
-### Namespaces
+### Casing
 
-Namespaces are formatted in PascalCase, with the exception of acronyms such as AI, UI, HUD.
-The name should briefly describe the "system" or set of definitions contained in the library.
+* Identifiers for classes, methods, namespaces, enums, properties, attributes and coroutines are `PascalCase`
+* Identifiers for fields, local variables, parameters are `camelCase`
+* Constants are written in `UPPER_CASE`. Example: `DEFAULT_EXPONENT`
+* The convention for casing is unaffected by modifiers such as `public`, `private`, `protected`, `static` or `readonly`
+* Acronyms should be treated as words and are written in `PascalCase`. Examples: `XmlFormatter`, `AiBehaviour`, `UiElement`
 
-**Examples:**
+#### Examples
 
-```csharp
-namespace Utilities.Debug
-```
-
-```csharp
-namespace TowerDefenseGame.Combat
-```
+* Namespaces and classes
 
 ```csharp
-namespace TowerDefenseGame.UI
+namespace Xml
+{
+    public class XmlFormatter
+    {
+        ...
+    }
+}
 ```
 
-### Classes
-
-Class names are formatted in PascalCase. Acronyms can be included as a prefix or suffix.
-The class name should briefly describe its responsibilities or data. Prefer including the suffix *"Base"* in abstract classes where applicable.
-
-**Examples:**
-
-A class responsible for performing movement on the player character's transform:
-
-```csharp
-class PlayerMotor
-```
-
-An abstract class for implementing behaviors for AI Agents:
-
-```csharp
-abstract class AIBehaviourBase
-```
-
-### Interfaces
-
-Interfaces should include the prefix "I", followed by words formatted in PascalCase. Avoid using acronyms after the prefix, such as `IUIElement`. The interface name should briefly describe the semantics of the members and/or which components they are supposed to interact with.
-
-**Examples:**
-
-An interface for something that can be a physics target for a *Motor*, such as the `PlayerMotor`:
-
-```csharp
-interface IMotorTarget
-```
-
-### Fields
-
-All non-static fields are written in camelCase.
-
-**Examples:**
+* Fields
 
 ```csharp
 public  int id;
@@ -198,17 +166,7 @@ private InputHandler input;
 private float health;
 ```
 
-Static fields are the exception, and should be written in PascalCase:
-
-```csharp
-public static int WorldSeed;
-```
-
-### Properties
-
-Properties are written in PascalCase.
-
-**Examples:**
+* Properties
 
 ```csharp
 public float Health
@@ -224,55 +182,105 @@ public float Health
 }
 ```
 
-### Attributes
-
-Attibutes are written in PascalCase.
-
-**Examples:**
-
-```csharp
-[ConsoleAttribute] public float gameSpeed;
-```
-
-### Methods
-
-Methods or functions are written in PascalCase. Method names should describe the effect caused by the method, or the return value if the method has no effect.
-
-**Examples:**
-
-A method that performs movement on the player character. Tipically, the name for this type of method should be a verb.
+* Methods and parameters
 
 ```csharp
 public void Move(Vector3 movement)
 ```
 
-A method that converts radians to degrees. Notice that while the return type is a float, the name of the method helps to understand how the value should be interpreted.
+* Constants
+
+```csharp
+public const int MAX_SCENE_OBJECTS = 256;
+```
+
+* Attributes
+
+```csharp
+[ConsoleAttribute] public float gameSpeed;
+```
+
+### Identifier naming
+
+#### Namespaces
+
+The identifier should briefly describe the "system" or set of definitions contained in the library.
+
+Examples:
+
+```csharp
+namespace Utilities.Debug
+```
+
+```csharp
+namespace TowerDefenseGame.Combat
+```
+
+```csharp
+namespace TowerDefenseGame.UI
+```
+
+#### Classes
+
+The class name should briefly describe its responsibilities or data. Prefer including the suffix *"Base"* in abstract classes where applicable.
+
+Examples:
+
+* A class responsible for performing movement on the player character's transform:
+
+```csharp
+class PlayerMotor
+```
+
+* An abstract class for implementing behaviors for AI Agents:
+
+```csharp
+abstract class AiBehaviourBase
+```
+
+#### Interfaces
+
+Interfaces should include the prefix "I". The interface name should briefly describe the purpose of its members or the components it interacts with.
+
+Examples:
+
+```csharp
+interface IMotorTarget
+```
+
+```csharp
+interface IUiElement
+```
+
+#### Methods
+
+Method names should describe the effect caused by the method, or the return value if the method has no effect.
+
+Examples:
+
+* A method that performs movement on the player character. Tipically, the name for this type of method should be a verb.
+
+```csharp
+public void Move(Vector3 movement)
+```
+
+* A method that converts radians to degrees. Notice that while the return type is a float, the name of the method helps to understand how the value should be interpreted.
 
 ```csharp
 private float RadianToDegrees(float radians)
 ```
 
-A method to determine if a position in the world can be traversed by the player. Once again, the name for the method explains how the return value should be interpreted.
+* A method to determine if a position in the world can be traversed by the player. Once again, the name for the method explains how the return value should be interpreted.
 
 ```csharp
 private bool IsPositionWalkable(Vector3 position)
 ```
 
-### Parameters
+#### Coroutines
 
-Paremeters are written in camelCase.
+Coroutines are written with the prefix 'CO_', and the rest of its identifier should follow the same rules as methods.
 
-**Examples:**
-
-```csharp
-public bool CheckProjectileCollision(float targetPosition)
-```
-
-### Coroutines
-
-Coroutines are written in PascalCase, with the prefix 'CO_'.
-
-**Examples:**
+Examples:
 
 ```csharp
 IEnumerator CO_SpawnPlayer(int playerId)
