@@ -399,7 +399,7 @@ position = position + velocity * deltaTime;
 
 ```csharp
 // Bad:
-pos = Vector3.Lerp(targetEnemy.position, GetComponent<AutoMovementController>().targetWaypoint.nextPosition, time / max);
+pos = Vector3.Lerp(targetEnemy.position, player.GetComponent<AutoMovementController>().targetWaypoint.nextPosition, elapsedTime / max);
 ```
 
 ```csharp
@@ -407,7 +407,7 @@ pos = Vector3.Lerp(targetEnemy.position, GetComponent<AutoMovementController>().
 var waypoint = player.GetComponent<AutoMovementController>().targetWaypoint;
 var startPosition = targetEnemy.position;
 var finalPosition = waypoint.nextPosition;
-var lerpPoint = time / maxMovementTime;
+var lerpPoint = elapsedTime / maxMovementTime;
 position = Vector3.Lerp(startPosition, finalPosition, lerpPoint);
 ```
 
