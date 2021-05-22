@@ -7,11 +7,7 @@ An attempt at documenting a composition of coding standards acquired from multip
 1. [Code Formatting](#code-formatting)
 2. [Code File Layout](#code-file-layout)
 3. [Naming Conventions](#naming-conventions)
-    1. [Identifier Casing](#identifier-casing)
-    2. [Identifier Naming](#identifier-naming)
 4. [Code Documentation](#code-documentation)
-    1. [In-Code Documentation](#in-code-documentation)
-    2. [Comments](#comments)
 5. [References](#references)
 
 ## Code Formatting
@@ -253,8 +249,6 @@ private bool CheckIfPositionIsWalkable(Vector3 position)
 
 ## Naming Conventions
 
-### Identifier Casing
-
 * Identifiers for classes, methods, namespaces, enums, properties, attributes and coroutines are `PascalCase`;
 
 ```csharp
@@ -309,8 +303,6 @@ public class AiBehaviour
 ```
 
 * The conventions for casing are unaffected by the modifiers `public`, `private`, `protected`, `internal`, `static` or `readonly`;
-
-### Identifier naming
 
 * Namespace identifiers should briefly describe the systems or sets of definitions contained in the namespace.
 
@@ -381,8 +373,6 @@ IEnumerator CO_SpawnPlayer(int playerId)
 
 ## Code Documentation
 
-### In-code documentation
-
 * Write self-documenting code when possible. Avoid overly abbreviated variables which don't have semantic value for the reader.
 
 ```csharp
@@ -410,8 +400,6 @@ var finalPosition = waypoint.nextPosition;
 var lerpPoint = elapsedTime / maxMovementTime;
 position = Vector3.Lerp(startPosition, finalPosition, lerpPoint);
 ```
-
-### Comments
 
 * Write useful comments. Avoid being redundant with what the code is telling the reader. Instead, disclose valuable information that might not be directly perceivable.
 
